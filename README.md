@@ -4,7 +4,7 @@ A Visual Studio Code extension that allows you to select code blocks and query L
 
 ## Features
 
-- Highlight any code in your editor and ask Lilypad AI questions about it
+- Highlight any code in your editor, select the AI model and ask Lilypad questions about it
 - View responses in a clean, formatted webview panel
 - Configure API token securely
 - Context menu integration for quick access
@@ -42,9 +42,10 @@ Alternatively, you can set the `LILYPAD_API_TOKEN` environment variable.
 1. Select a block of code in your editor
 2. Right-click and select "Ask Lilypad about this code" from the context menu, or:
 3. Open the Command Palette (Ctrl+Shift+P) and select "Ask Lilypad about this code"
-4. Enter your question about the selected code
-5. Wait for Lilypad AI to process your query
-6. View the response in the webview panel that opens
+4. Select AI model to use
+5. Enter your question about the selected code
+6. Wait for Lilypad AI to process your query
+7. View the response in the webview panel that opens
 
 ## Configuration
 
