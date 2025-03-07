@@ -42,16 +42,6 @@
           "default": "",
           "description": "API token for Lilypad (or set via environment variable)"
         },
-        "lilypad-helper.model": {
-          "type": "string",
-          "default": "llama2:13b",
-          "enum": [
-            "llama2:7b",
-            "llama2:13b",
-            "llama2:70b"
-          ],
-          "description": "The model to use for queries"
-        },
         "lilypad-helper.maxTokens": {
           "type": "number",
           "default": 2048,

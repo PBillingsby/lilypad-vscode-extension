@@ -51,7 +51,6 @@ Alternatively, you can set the `LILYPAD_API_TOKEN` environment variable.
 The extension supports the following configuration options:
 
 - `lilypad-helper.apiToken`: Your Lilypad API token (stored securely)
-- `lilypad-helper.model`: The Lilypad model to use (default: "llama2:13b")
 - `lilypad-helper.maxTokens`: Maximum number of tokens in the response (default: 2048)
 
 You can modify these settings in VS Code's settings (File > Preferences > Settings).
