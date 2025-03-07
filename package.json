@@ -1,0 +1,94 @@
+{
+  "name": "lilypad-code-helper",
+  "displayName": "Lilypad Code Helper",
+  "description": "Query your code with Lilypad AI",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:lilypad-helper.askQuery",
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lilypad-helper.askQuery",
+        "title": "Ask Lilypad about this code"
+      },
+      {
+        "command": "lilypad-helper.configureToken",
+        "title": "Configure Lilypad API Token"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "lilypad-helper.askQuery",
+          "group": "lilypad"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Lilypad Helper",
+      "properties": {
+        "lilypad-helper.apiToken": {
+          "type": "string",
+          "default": "",
+          "description": "API token for Lilypad (or set via environment variable)"
+        },
+        "lilypad-helper.model": {
+          "type": "string",
+          "default": "llama2:13b",
+          "enum": [
+            "llama2:7b",
+            "llama2:13b",
+            "llama2:70b"
+          ],
+          "description": "The model to use for queries"
+        },
+        "lilypad-helper.maxTokens": {
+          "type": "number",
+          "default": 2048,
+          "description": "Maximum number of tokens in the response"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/node-fetch": "^2.6.2",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
+    "glob": "^7.1.7",
+    "mocha": "^8.4.0",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-fetch": "^2.6.7"
+  }
+}
