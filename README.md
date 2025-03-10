@@ -11,13 +11,6 @@ A Visual Studio Code extension that allows you to select code blocks and query L
 
 ## Installation
 
-### From the VS Code Marketplace
-
-1. Open VS Code
-2. Go to Extensions (Ctrl+Shift+X)
-3. Search for "Lilypad Code Helper"
-4. Click Install
-
 ### From VSIX file
 
 1. Download the `.vsix` file from the releases page
