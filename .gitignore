@@ -1,5 +1,4 @@
 .env
-*.vsix
 .vscode
 dist
 out
