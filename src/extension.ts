@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 import fetch from "node-fetch";
 import * as dotenv from "dotenv";
-
-dotenv.config();
+import * as path from "path";
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const API_URL = "https://anura-testnet.lilypad.tech/api/v1/chat/completions";
 const MODELS_URL = "https://anura-testnet.lilypad.tech/api/v1/models";
@@ -10,6 +10,9 @@ const API_TOKEN = process.env.LILYPAD_API_TOKEN;
 
 export function activate(context: vscode.ExtensionContext) {
   console.log("🐸 Lilypad Helper extension activated.");
+  console.log("🐸 Checking API Token...");
+  console.log("🐸 process.env.LILYPAD_API_TOKEN:", process.env.LILYPAD_API_TOKEN ? "SET" : "MISSING");
+
 
   const askQueryCommand = vscode.commands.registerCommand(
     "lilypad-helper.askQuery",
