@@ -161,17 +161,27 @@ async function sendToLilypad(
       throw new Error(`API request failed with status ${response.status}: ${responseText}`);
     }
 
-    const messages = responseText.split("\n").filter((line) => line.startsWith("data: "));
-    for (const line of messages) {
+    const lines = responseText.split("\n").filter(line => line.startsWith("data: "));
+    for (const line of lines) {
       try {
-        const parsedData = JSON.parse(line.replace("data: ", ""));
-        const message = parsedData?.choices?.[0]?.message;
+        const parsed = JSON.parse(line.replace("data: ", ""));
+        const message = parsed?.choices?.[0]?.message;
         if (message?.role === "assistant" && message?.content) {
           return message.content.trim();
         }
       } catch {
         continue;
       }
+    }
+
+    try {
+      const parsed = JSON.parse(responseText);
+      const message = parsed?.choices?.[0]?.message;
+      if (message?.role === "assistant" && message?.content) {
+        return message.content.trim();
+      }
+    } catch (err) {
+      console.error("Failed to parse non-streamed response:", err);
     }
 
     return "No valid response received from Lilypad.";
