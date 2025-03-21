@@ -13,7 +13,6 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("🐸 Checking API Token...");
   console.log("🐸 process.env.LILYPAD_API_TOKEN:", process.env.LILYPAD_API_TOKEN ? "SET" : "MISSING");
 
-
   const askQueryCommand = vscode.commands.registerCommand(
     "lilypad-helper.askQuery",
     async () => {
@@ -103,10 +102,11 @@ async function fetchModels(): Promise<string[]> {
       },
     });
 
+
     if (!response.ok) {
       throw new Error(`Failed to fetch models: ${response.statusText}`);
     }
-
+    
     const data = await response.json();
     return data?.data?.models || [];
   } catch (error: any) {
@@ -165,8 +165,9 @@ async function sendToLilypad(
     for (const line of messages) {
       try {
         const parsedData = JSON.parse(line.replace("data: ", ""));
-        if (parsedData?.message?.role === "assistant") {
-          return parsedData.message.content.trim();
+        const message = parsedData?.choices?.[0]?.message;
+        if (message?.role === "assistant" && message?.content) {
+          return message.content.trim();
         }
       } catch {
         continue;
