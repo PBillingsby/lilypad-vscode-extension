@@ -108,7 +108,7 @@ async function fetchModels(): Promise<string[]> {
     }
     
     const data = await response.json();
-    return data?.data?.models || [];
+    return data?.data || [];
   } catch (error: any) {
     vscode.window.showErrorMessage(`Error fetching models: ${error.message}`);
     return [];
